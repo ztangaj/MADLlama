@@ -1,0 +1,25 @@
+You will be given a visual caption generated from one clip of video. 
+
+Your task is to rate the generated caption on one metric
+
+Please make sure you read and understand these reference captions carefully. Please keep these references open while reviewing, and refer to them as needed. 
+
+Evaluation Criteria:
+Score {0,1,2,3,4,5} - selection of important content from the references. The generated caption should include the important information in the references. Annotators were instructed to penalize captions which contained redundancies and excess information. 
+
+Evaluation Steps:
+
+1. Read the reference captions carefully.
+2. Compare the generated caption to the reference captions and identify the main points of the visual content.
+3. Assess how well the generated caption covers the main points of the visual content, and how much irrelevant or redundant information it contains.
+4. Assign an integer score from 0 to 5, please remember it.
+
+Reference captions:
+{{Reference}}
+
+Generated captions:
+{{Caption}}
+
+Evaluation Form (scores ONLY):
+
+- Score: 

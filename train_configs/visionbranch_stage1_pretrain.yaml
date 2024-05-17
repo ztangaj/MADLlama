@@ -11,9 +11,11 @@ model:
   # If you want train models based on LLaMA-2-chat,
   # some ckpts could be download from our provided huggingface repo
   # i.e.  https://huggingface.co/DAMO-NLP-SG/Video-LLaMA-2-13B-Pretrained
-  llama_model: "ckpt/vicuna-13b/" or "ckpt/vicuna-7b/" or "ckpt/llama-2-7b-chat-hf"  or "ckpt/llama-2-13b-chat-hf"
-  imagebind_ckpt_path: "ckpt/imagebind_path/"
-  llama_proj_model: 'ckpt/pretrained_minigpt4.pth' or  '/mnt/workspace/ckpt/pretrained_minigpt4_7b.pth'
+  llama_model: "lmsys/vicuna-7b-v1.1" 
+  # imagebind_ckpt_path: "ckpt/imagebind_path/"
+
+  # The ckpt of vision branch after stage1 pretrained, 
+  ckpt: 'ckpt/VL_LLaMA_2_13B_Pretrained.pth'   # you c
   
   # only train vision branch
   equip_audio_branch: False  # whether equips the audio branch
@@ -27,25 +29,11 @@ model:
   num_video_query_token: 32
 
 datasets:
-  webvid:
-    data_type: video
-    build_info:
-      anno_dir: path/webvid/webvid_train_data/filter_annotations/
-      videos_dir: path/webvid/webvid_train_data/videos/
-
-    vis_processor:
-      train:
-        name: "alpro_video_train"
-        n_frms: 8
-        image_size: 224
-    text_processor:
-      train:
-        name: "blip_caption"
-    sample_ratio: 100
-
   cc_sbu_align:
     data_type: images
     build_info:
+      anno_dir: ./webvid/webvid_train_data/filter_annotations/
+      videos_dir: ./webvid/webvid_train_data/videos/
       storage: /path/LLaVA_cc3m
     vis_processor:
       train:
@@ -55,6 +43,35 @@ datasets:
       train:
         name: "blip_caption"
     sample_ratio: 24
+
+  # webvid:
+  #   data_type: video
+  #   build_info:
+  #     anno_dir: ./webvid/webvid_train_data/filter_annotations/
+  #     videos_dir: ./webvid/webvid_train_data/videos/
+
+  #   vis_processor:
+  #     train:
+  #       name: "alpro_video_train"
+  #       n_frms: 8
+  #       image_size: 224
+  #   text_processor:
+  #     train:
+  #       name: "blip_caption"
+  #   sample_ratio: 100
+
+  # cc_sbu_align:
+  #   data_type: images
+  #   build_info:
+  #     storage: /path/LLaVA_cc3m
+  #   vis_processor:
+  #     train:
+  #       name: "blip2_image_train"
+  #       image_size: 224
+  #   text_processor:
+  #     train:
+  #       name: "blip_caption"
+  #   sample_ratio: 24
 
 run:
   task: video_text_pretrain

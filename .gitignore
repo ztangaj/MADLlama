@@ -26,8 +26,12 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+.env
 
 data/
+ckpt/*
+garbage/
+results/
 eval_configs/video_llama_test_run.yaml
 **/video_llama_stage1_pretrain_v2.yaml
 **/video_llama.py

@@ -19,7 +19,7 @@ from video_llama.common.registry import registry
 from video_llama.processors.video_processor import ToTHWC,ToUint8,load_video
 from video_llama.processors import Blip2ImageEvalProcessor
             
-from video_llama.models.ImageBind.data import load_and_transform_audio_data
+# from video_llama.models.ImageBind.data import load_and_transform_audio_data
 class SeparatorStyle(Enum):
     """Different separator style."""
     SINGLE = auto()
@@ -299,6 +299,7 @@ class Chat:
         
         # conv.system = "You can understand the video that the user provides.  Follow the instructions carefully and explain your answers in detail."
         image_emb, _ = self.model.encode_videoQformer_visual(video)
+        print(image_emb.shape)
         img_list.append(image_emb)
         conv.append_message(conv.roles[0], "<Video><ImageHere></Video> "+ msg)
         return "Received."
@@ -318,7 +319,6 @@ class Chat:
             image = image.to(self.device)
         else:
             raise NotImplementedError
-
         image_emb, _ = self.model.encode_videoQformer_visual(image)
         img_list.append(image_emb)
         # Todo msg=""
