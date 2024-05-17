@@ -16,6 +16,17 @@ The following checkpoints are the full weights (visual encoder + audio encoder +
 
 Please contact the MAD team to access their dataset. You need to fill a form from [MAD Repo](https://github.com/Soldelli/MAD)
 
-## Run the Inference
+## Run the Inference for different stage
+```
+python inference_stage1.py
+```
 
-## Run the evaluation
+## Run the evaluation for different stage
+```
+python gpt_refine.py
+```
+
+## Quanlitative Result
+<p align="center" width="100%">
+<a target="_blank"><img src="figs/s2_person.png" alt="Video-LLaMA" style="min-width: 200px; display: block; margin: auto;"></a>
+</p>
